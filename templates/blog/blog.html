@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+{% block class %}sub_page{% endblock %}
+{% block content %}
+    <section class="blog_section layout_padding">
+        <div class="container">
+            <div class="heading_container">
+                <h2>
+                    Blog
+                </h2>
+            </div>
+            {% if user.is_authenticated %}
+                <button onclick="location.href='{% url 'blog:blog_create' %}'" type="button"
+                        class="btn btn-primary btn-lg d-block mx-auto"
+                        style="background-color: rgba(255, 255, 255, 0); color: #000">Добавить публикацию
+                </button>
+            {% endif %}
+            <div class="row">
+                {% for blog in blogcreatemodel_list %}
+                    <div class="col-md-6 col-lg-4 mx-auto">
+                        <div class="box">
+                            <div class="img-box">
+                                <img width="200px" height="200px" src="{{ blog.image.url }}" alt="">
+                            </div>
+                            <div class="detail-box">
+                                <h5>
+                                    {{ blog.title|truncatechars:800 }}
+                                </h5>
+                                <p>
+                                    {{ blog.description }}
+                                </p>
+                                <a href="{% url 'blog:blog_detail' blog.slug %}">
+                                    Read More
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
