@@ -17,5 +17,14 @@
             </div>
         </div>
     </div>
+    {% if user.is_authenticated %}
+        {% if user.id == object.author.id %}
+            <p class="text-center mt-3">
+                <a class="text-center" href="{% url 'blog:blog_update' object.slug %}">Edit |</a>
+                <a href="{% url 'blog:blog_delete' object.slug %}">Delete</a>
+            </p>
+        {% endif %}
+    {% endif %}
+
 
 {% endblock %}
