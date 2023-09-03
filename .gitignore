@@ -24,7 +24,7 @@ pip-selfcheck.json
 [Ss]cripts
 pyvenv.cfg
 .venv
-.idea
+.idea/
 pip-selfcheck.json
 
 ### Django template

@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
+
 from . import models
-from django import forms
 
 
 class SignUpForm(UserCreationForm):
@@ -10,5 +10,3 @@ class SignUpForm(UserCreationForm):
             'username',
             'email',
         )
-
-
