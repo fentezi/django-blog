@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="text-center">Ваша корзина товаров</h1>
+    <table class="cart">
+        <thead>
+        <tr>
+            <th>Изображение</th>
+            <th>Продукт</th>
+            <th>Количество</th>
+            <th>Удалить</th>
+            <th>Цена</th>
+            <th>Полная цена</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in cart %}
+            {% with furniture=item.product %}
+                <tr>
+                    <td>
+                        <a href="{{ furniture.get_absolute_url }}">
+                            <img width="60" height="60" src="{{ furniture.image.url }}" alt=""/>
+                        </a>
+                    </td>
+                    <td>{{ furniture.title }}</td>
+                    <td>
+                        <form action="{% url "cart:cart_add" furniture.id %}" method="post" class="add">
+                            {{ item.update_quantity_form.quantity }}
+                            {{ item.update_quantity_form.update }}
+                            {% csrf_token %}
+                            <input type="submit" value="Обновить">
+                        </form>
+                    </td>
+                    <td><a href="{% url "cart:cart_remove" furniture.id %}">Удалить</a></td>
+                    <td class="num">{{ item.price }} $</td>
+                    <td class="num">{{ item.total_price }} $</td>
+                </tr>
+            {% endwith %}
+        {% endfor %}
+        <tr class="total">
+            <td>Total</td>
+            <td colspan="4"></td>
+            <td class="num">{{ cart.get_total_price }} $</td>
+        </tr>
+        </tbody>
+    </table>
+    <p class="text-right">
+        <a href="{% url "furnitures:furn_main" %}" class="btn">Продолжить Шопинг</a>
+        <a href="#">Оформить заказ</a>
+    </p>
+{% endblock %}

@@ -26,11 +26,13 @@
                                 </h5>
                                 <div class="price_box">
                                     <h6 class="price_heading">
-                                        <span>$</span> {{ furniture.price }}.00
+                                        <span>$</span> {{ furniture.price }}
                                     </h6>
-                                    <a href="#">
-                                        Buy Now
-                                    </a>
+                                    <form method="post" action="{% url 'cart:cart_add' furniture.id %}">
+                                        {% csrf_token %}
+                                        {{ cart_product_form }}
+                                        <input type="submit" value="Buy now">
+                                    </form>
                                 </div>
                             </div>
                         </div>

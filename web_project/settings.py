@@ -24,6 +24,8 @@ SECRET_KEY = 'django-insecure-8+b$h)h5h0huc(1q@$^3z-n^q#eazuxehq&@im1l74zu%n!@xb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+CART_SESSION_ID = 'cart'
+
 ALLOWED_HOSTS = []
 
 # Application definition
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'blog.apps.BlogConfig',
     'furnitures.apps.FurnituresConfig',
+    'cart.apps.CartConfig',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +71,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.contrib.messages.context_processors.messages',
+                'cart.context_processors.cart',
             ],
         },
     },
